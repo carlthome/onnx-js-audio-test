@@ -9,6 +9,9 @@
       eachSystem = f: nixpkgs.lib.genAttrs systems (system: f nixpkgs.legacyPackages.${system});
     in
     {
+      packages = eachSystem (pkgs: {
+        default = import ./default.nix { inherit pkgs; };
+      });
       devShells = eachSystem (pkgs: {
         default = import ./shell.nix { inherit pkgs; };
       });
