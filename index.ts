@@ -1,1 +1,3 @@
-console.log("Hello via Bun!");
+import * as ort from "onnxruntime-web";
+
+console.log(ort);
