@@ -10,5 +10,8 @@
   },
   "dependencies": {
     "onnxruntime-web": "^1.16.3"
+  },
+  "scripts": {
+    "local": "bun build index.ts --outdir=dist --target=browser; cp model.onnx dist; cp node_modules/onnxruntime-web/dist/*.wasm dist; cp index.html dist; bunx serve dist"
   }
 }
