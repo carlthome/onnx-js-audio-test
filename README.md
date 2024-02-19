@@ -6,13 +6,13 @@ Ongoing experiment to see if we can use ONNX to run audio processing in the brow
 
 ### Install build environment
 
-You can install Python and JavaScript dependencies however you'd like, but easiest is to use [direnv](https://direnv.net/) and [nix](https://nixos.org/) (with [flakes enabled](https://nixos.wiki/wiki/Flakes#Enable_flakes)), with which you can just run:
+You can install Python and JavaScript dependencies however you'd like, but easiest is to use [nix](https://nixos.org/) (with [flakes enabled](https://nixos.wiki/wiki/Flakes#Enable_flakes)), with which you can just run:
 
 ```sh
-direnv allow
+nix develop
 ```
 
-and go get a coffee while it installs everything you need.
+and go get a coffee while it installs everything you need into a local shell environment. The second time will be faster, once build inputs have been cached in the Nix store.
 
 ### Create a ONNX model
 
