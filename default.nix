@@ -1,23 +1,24 @@
 { pkgs ? import <nixpkgs> { } }:
 
-pkgs.stdenv.mkDerivation {
+pkgs.stdenv.mkDerivation rec {
   name = "onnx-js-audio-test";
-  version = "1.0.0";
 
   src = ./.;
 
   nativeBuildInputs = with pkgs; [
     bun
-    (python3.withPackages (ps: with ps; [
+    nodejs
+    npmHooks.npmConfigHook
+    (pkgs.python3.withPackages (ps: with ps; [
       torch
       onnx
     ]))
   ];
 
-  # TODO Use buildNpmPackage instead so build dependencies are taken from the store.
-  configurePhase = ''
-    bun install
-  '';
+  npmDeps = pkgs.fetchNpmDeps {
+    src = ./.;
+    hash = "sha256-PQHsc3K2+Y+sAy/le3/0TPaigJN1jkQE/qIwPl38kPM=";
+  };
 
   buildPhase = ''
     # Bundle web app dependencies.
